@@ -1,0 +1,31 @@
+version: '2.1'
+services:
+  psql:
+    image: sameersbn/postgresql:9.6-2
+#    expose:
+#      - '5432'
+    ports:
+    - "5432:5432"
+    environment:
+      DB_NAME: paywei
+      DB_PASS: paywei
+      DB_USER: paywei
+    volumes:
+      - /data/paywei/production/postgresql:/var/lib/postgresql
+
+  uwsgi:
+    extends:
+      service: paywei-django
+      file: build.yml
+    command: ["/app/compose/django/uwsgi.sh"]
+    ports:
+      - "8000:8000"
+    links:
+      - psql
+    environment:
+      - ENV
+      - SECRET_KEY
+      - SERVICE=runserver
+      - METRIC_ACCESS_KEY_ID=AKIARNKH4B5PSANBJSHL
+      - METRIC_SECRET_ACCESS_KEY=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
+  

@@ -1,0 +1,15 @@
+FROM python:3.6.5
+
+ENV LANG C.UTF-8
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /app
+WORKDIR /app
+
+ADD . /app
+RUN pip install -r /app/compose/django/requirements.txt --find-links /app/compose/django/
+
+
+COPY ./compose/django/*.sh /
+RUN chmod +x /*.sh
+ENTRYPOINT ["/entrypoint.sh"]

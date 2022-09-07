@@ -1,0 +1,12 @@
+version: "2.1"
+services:
+  paywei-django-dev:
+    build:
+      context: ./django
+    image: paywei-django-dev
+  paywei-django:
+    build:
+      context: ../
+      dockerfile: Dockerfile.production
+    image: paywei-django
+

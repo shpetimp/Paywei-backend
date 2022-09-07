@@ -1,0 +1,14 @@
+*.pyc
+pyenv
+airdrop.log
+.pytest_cache
+.sqlite-test-db
+*.csv
+conf/local.py
+.zappa_env
+.local_env
+zappa_settings.json
+.idea
+airdrop.env
+.vscode
+static
